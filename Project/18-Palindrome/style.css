@@ -1,0 +1,108 @@
+body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    min-height: 100vh;
+    background-color: #42e3ff;
+  }
+  
+  body .background {
+    width: 480px;
+    height: auto;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: white;
+  }
+  
+  body .background .heading h2 {
+    font-size: 40px;
+    margin-top: 5px;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+  
+  body .background .heading p {
+    font-size: 25px;
+    margin-top: 5px;
+    color: grey;
+  }
+  
+  body .background .content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  body .background .content input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid grey;
+    padding: 5px;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  
+  body .background .content input:focus {
+    -webkit-box-shadow: 0 2px 5px black;
+            box-shadow: 0 2px 5px black;
+  }
+  
+  body .background .content input::-webkit-input-placeholder {
+    text-align: center;
+  }
+  
+  body .background .content input:-ms-input-placeholder {
+    text-align: center;
+  }
+  
+  body .background .content input::-ms-input-placeholder {
+    text-align: center;
+  }
+  
+  body .background .content input::placeholder {
+    text-align: center;
+  }
+  
+  body .background .content button {
+    background-color: #42e3ff;
+    width: 102%;
+    height: 55px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    outline: none;
+    padding: 5px;
+    font-size: 25px;
+    opacity: 0.7;
+  }
+  
+  body .background .content .active {
+    opacity: 1;
+  }
+  
+  body .background .output {
+    font-size: 30px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  body .background .output span {
+    color: #14dbca;
+  }
