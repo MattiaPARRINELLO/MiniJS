@@ -1,4 +1,4 @@
-var library = {
+var library = { //library of images
     pokemon: [
       'https://res.cloudinary.com/beumsk/image/upload/v1547980025/memory/Pokemon/Bulbasaur.png',
       'https://res.cloudinary.com/beumsk/image/upload/v1547980083/memory/Pokemon/Charmander.png',
@@ -132,96 +132,96 @@ var library = {
       'https://res.cloudinary.com/beumsk/image/upload/v1547999577/memory/harrypotter/neville.jpg'
     ]
   }
-  var images = [];
-  var tempElt1 = "";
-  var tempElt2 = "";
-  var click = -1;
-  var win = 0;
-  var score = 0;
-  var time = 0;
-  var preElt = document.querySelector("#pre");
-  var themesElt = document.querySelector("#themes");
-  var boxElts = document.getElementsByClassName("box");
-  var mainElt = document.querySelector(".main");
-  var timeElt = document.querySelector("#time");
-  var scoreElt = document.querySelector("#score");
-  var postElt = document.querySelector("#post");
-  var finalElt = document.querySelector("#final");
-  var againElt = document.querySelector("#again");
-  themesElt.addEventListener("click", function(e) {
-    if (e.target.classList.contains("themes")) {
-      activateTheme(e.target.id);
-      preElt.classList.add("hidden");
+  var images = []; // array of images
+  var tempElt1 = "";  // first image
+  var tempElt2 = ""; // second image
+  var click = -1; // click counter
+  var win = 0; // win counter
+  var score = 0; // score counter
+  var time = 0; // time counter
+  var preElt = document.querySelector("#pre"); // pre element
+  var themesElt = document.querySelector("#themes"); // themes element
+  var boxElts = document.getElementsByClassName("box"); // box elements
+  var mainElt = document.querySelector(".main"); // main element
+  var timeElt = document.querySelector("#time"); // time element
+  var scoreElt = document.querySelector("#score"); // score element
+  var postElt = document.querySelector("#post"); // post element
+  var finalElt = document.querySelector("#final"); // final element
+  var againElt = document.querySelector("#again"); // again element
+  themesElt.addEventListener("click", function(e) { // click on themes
+    if (e.target.classList.contains("themes")) { // if the target is a theme
+      activateTheme(e.target.id); // activate the theme
+      preElt.classList.add("hidden"); // hide the pre element
     }
   });
-  function activateTheme(theme) {
-    for (let i = 0; i < 20; i++) {images.push(library[theme][i]);}  
-    for (let i = 0; i < 20; i++) {
-      var rand = Math.floor(Math.random() * (images.length - 1));
-      boxElts[i].innerHTML = "<img src='" + images[rand] + "' alt='image' class='hidden'>";
-      images.splice(rand, 1);
+  function activateTheme(theme) { // activate theme
+    for (let i = 0; i < 20; i++) {images.push(library[theme][i]);}  // push images 
+    for (let i = 0; i < 20; i++) { // for each box
+      var rand = Math.floor(Math.random() * (images.length - 1)); // random number
+      boxElts[i].innerHTML = "<img src='" + images[rand] + "' alt='image' class='hidden'> "; // set the image
+      images.splice(rand, 1); // remove the image
     }
   }
-  mainElt.addEventListener("click", gameLogic);
-  function gameLogic(e) {
-    if (e.target.classList.contains("play")) {
-      e.target.firstChild.classList.remove("hidden");
-      if (click < 1) {
-        tempElt1 = e.target;
-        if (click === -1) {
-          timer = setInterval(function() {
-            time++;
-            timeElt.innerHTML = time;
-          }, 1000);
+  mainElt.addEventListener("click", gameLogic); // click on main
+  function gameLogic(e) { // game logic
+    if (e.target.classList.contains("play")) { // if the target is a play button
+      e.target.firstChild.classList.remove("hidden"); // show the image
+      if (click < 1) { // if the click is less than 1
+        tempElt1 = e.target; // set the first image
+        if (click === -1) { // if the click is -1
+          timer = setInterval(function() { // set the timer
+            time++; // add 1 to time
+            timeElt.innerHTML = time; // set the time element
+          }, 1000);  // every second
         }
-        click = 1;
+        click = 1;  // set the click to 1
       }
-      else if (e.target !== tempElt1) {
-        tempElt2 = e.target;
-        if (tempElt1.firstChild.src !== tempElt2.firstChild.src) {
-          mainElt.removeEventListener("click", gameLogic);
-          setTimeout( function() {
-            tempElt1.firstChild.classList.add("hidden");
-            tempElt2.firstChild.classList.add("hidden");
-            mainElt.addEventListener("click", gameLogic);
-          }, 400);
-          if (score > 0) {
-            score -= 2;
-          }
-          scoreElt.innerHTML = score;
+      else if (e.target !== tempElt1) { // if the target is not the first image
+        tempElt2 = e.target; // set the second image
+        if (tempElt1.firstChild.src !== tempElt2.firstChild.src) { // if the images are different
+          mainElt.removeEventListener("click", gameLogic); // remove the event listener
+          setTimeout( function() { // set the timeout
+            tempElt1.firstChild.classList.add("hidden"); // hide the first image
+            tempElt2.firstChild.classList.add("hidden"); // hide the second image
+            mainElt.addEventListener("click", gameLogic); // add the event listener
+          }, 400); // after 400ms
+          if (score > 0) { // if the score is greater than 0
+            score -= 2; // subtract 2 from the score
+          } 
+          scoreElt.innerHTML = score; // set the score element
         }
-        else {
-          score += 10;
-          win += 2;
-          tempElt1.firstChild.classList.add("outlined");
-          tempElt2.firstChild.classList.add("outlined");
-          tempElt1.classList.remove("play");
-          tempElt2.classList.remove("play");
-          scoreElt.innerHTML = score;
-          if (win === 20) {
-            clearInterval(timer);
-            finalElt.innerHTML = "You won " + score + " points <br> in " + time + " seconds";
-            postElt.classList.remove("hidden");
+        else { // if the images are the same
+          score += 10; // add 10 to the score
+          win += 2; // add 2 to the win
+          tempElt1.firstChild.classList.add("outlined"); // outline the first image
+          tempElt2.firstChild.classList.add("outlined"); // outline the second image
+          tempElt1.classList.remove("play"); // remove the play class
+          tempElt2.classList.remove("play"); // remove the play class
+          scoreElt.innerHTML = score; // set the score element
+          if (win === 20) { // if the win is 20
+            clearInterval(timer); // clear the timer
+            finalElt.innerHTML = "You won " + score + " points <br> in " + time + " seconds"; // set the final element
+            postElt.classList.remove("hidden"); // show the post element
           }
         }
-        click = 0;
+        click = 0; // set the click to 0
       }
     }
   }
-  againElt.addEventListener("click", resetGame);
-  function resetGame() {
-    tempElt1 = "";
-    tempElt2 = "";
-    click = -1;
-    win = 0;
-    score = 0;
-    time = 0;
-    postElt.classList.add("hidden");
-    preElt.classList.remove("hidden");
-    for (let i = 0; i < 20; i++) {
-      boxElts[i].classList.add("play");
-      boxElts[i].firstChild.classList.add("hidden");
+  againElt.addEventListener("click", resetGame); // click on again
+  function resetGame() {  // reset game
+    tempElt1 = ""; // set the first image
+    tempElt2 = ""; // set the second image
+    click = -1; // set the click to -1
+    win = 0; // set the win to 0
+    score = 0; // set the score to 0
+    time = 0; // set the time to 0
+    postElt.classList.add("hidden"); // hide the post element
+    preElt.classList.remove("hidden"); // show the pre element
+    for (let i = 0; i < 20; i++) { // for each box
+      boxElts[i].classList.add("play"); // add the play class
+      boxElts[i].firstChild.classList.add("hidden"); // hide the image
     }
-    timeElt.textContent = time;
-    scoreElt.textContent = score;
+    timeElt.textContent = time; // set the time element
+    scoreElt.textContent = score; // set the score element
   }

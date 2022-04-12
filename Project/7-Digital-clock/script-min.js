@@ -1,0 +1,1 @@
+function showTime(){var e=new Date,t=e.getHours(),n=e.getMinutes(),o=e.getSeconds(),i="AM";0==t&&(t=12),t>12&&(t-=12,i="PM");var s=(t=t<10?"0"+t:t)+":"+(n=n<10?"0"+n:n)+":"+(o=o<10?"0"+o:o)+" "+i;document.getElementById("display").innerText=s,document.getElementById("display").textContent=s,setTimeout(showTime,1e3)}showTime();

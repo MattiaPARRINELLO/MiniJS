@@ -1,6 +1,6 @@
-document.onkeydown = function(e) {
-    if (e.keyCode == 13) {
-        let color = document.getElementById('input').value 
-        document.body.style.backgroundColor = color;
+document.onkeydown = function (e) { //when the user press a key
+    if (e.keyCode == 13) { //if the key is enter
+        let color = document.getElementById('input').value //get the value of the input
+        document.body.style.backgroundColor = color; //change the background color with the value of the input
     }
 }
